@@ -5,10 +5,12 @@ require "jira_rest_api/version"
 Gem::Specification.new do |s|
   s.name        = "jira_rest_api"
   s.version     = JiraRestApi::VERSION
-  s.authors     = ["SUMO Heavy Industries"]
+  s.authors     = ["John Faucett"]
+  s.email       = ['jwaterfaucett@gmail.com']
   s.homepage    = "http://www.sumoheavy.com"
   s.summary     = %q{Ruby Gem for use with the Atlassian JiraRestApi REST API}
   s.description = %q{A Ruby Client for the Jira Rest API}
+  s.license     = "MIT"
 
   s.rubyforge_project = "jira-ruby"
 
