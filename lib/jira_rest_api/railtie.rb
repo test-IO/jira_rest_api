@@ -1,4 +1,4 @@
-require 'jira'
+require 'jira_rest_api'
 require 'rails'
 
 module JiraRestApi
