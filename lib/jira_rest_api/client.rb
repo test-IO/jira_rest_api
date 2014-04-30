@@ -51,7 +51,8 @@ module JiraRestApi
       :rest_base_path     => "/rest/api/2",
       :ssl_verify_mode    => OpenSSL::SSL::VERIFY_PEER,
       :use_ssl            => true,
-      :auth_type          => :oauth
+      :auth_type          => :oauth,
+      :debug              => false
     }
 
     DEFAULT_HEADERS = {
