@@ -41,6 +41,7 @@ module JiraRestApi
 
     # The configuration options for this client instance
     attr_reader :options
+    attr_reader :default_headers
 
     def_delegators :@request_client, :init_access_token, :set_access_token, :set_request_token, :request_token, :access_token
 
@@ -53,9 +54,13 @@ module JiraRestApi
       :auth_type          => :oauth
     }
 
+    DEFAULT_HEADERS = {
+      'Accept' => 'application/json'
+    }
+
     def initialize(options={})
-      options = DEFAULT_OPTIONS.merge(options)
-      @options = options
+      @default_headers = DEFAULT_HEADERS.merge(options[:headers] || {})
+      @options = DEFAULT_OPTIONS.merge(options)
       @options[:rest_base_path] = @options[:context_path] + @options[:rest_base_path]
 
       case options[:auth_type]
@@ -154,7 +159,7 @@ module JiraRestApi
     protected
 
       def merge_default_headers(headers)
-        {'Accept' => 'application/json'}.merge(headers)
+        default_headers.merge(headers)
       end
 
   end
