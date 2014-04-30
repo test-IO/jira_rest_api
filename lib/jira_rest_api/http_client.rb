@@ -38,7 +38,7 @@ module JiraRestApi
       http_conn.use_ssl = @options[:use_ssl]
       http_conn.verify_mode = @options[:ssl_verify_mode]
       if options[:debug]
-        http.set_debug_output($stdout)
+        http_conn.set_debug_output($stdout)
       end
       http_conn
     end
