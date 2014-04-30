@@ -6,7 +6,8 @@ module JiraRestApi
 
     DEFAULT_OPTIONS = {
       :username           => '',
-      :password           => ''
+      :password           => '',
+      :debug              => false
     }
 
     attr_reader :options
@@ -36,6 +37,9 @@ module JiraRestApi
       http_conn = http_class.new(uri.host, uri.port)
       http_conn.use_ssl = @options[:use_ssl]
       http_conn.verify_mode = @options[:ssl_verify_mode]
+      if options.debug
+        http.set_debug_output($stdout)
+      end
       http_conn
     end
 
