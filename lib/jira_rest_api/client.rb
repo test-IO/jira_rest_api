@@ -41,7 +41,6 @@ module JiraRestApi
 
     # The configuration options for this client instance
     attr_reader :options
-    attr_reader :default_headers
 
     def_delegators :@request_client, :init_access_token, :set_access_token, :set_request_token, :request_token, :access_token
 
@@ -52,7 +51,8 @@ module JiraRestApi
       :ssl_verify_mode    => OpenSSL::SSL::VERIFY_PEER,
       :use_ssl            => true,
       :auth_type          => :oauth,
-      :debug              => false
+      :debug              => false,
+      :headers            => {}
     }
 
     DEFAULT_HEADERS = {
@@ -159,7 +159,7 @@ module JiraRestApi
     protected
 
       def merge_default_headers(headers)
-        default_headers.merge(headers)
+        DEFAULT_HEADERS.merge(headers)
       end
 
   end
