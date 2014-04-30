@@ -35,8 +35,8 @@ module JiraRestApi
       else
           http_class = Net::HTTP
       end
-      http_conn = http_class.new(uri.host, uri.port)
-      http_conn.use_ssl = @options[:use_ssl]
+      http_conn             = http_class.new(uri.host, uri.port)
+      http_conn.use_ssl     = @options[:use_ssl]
       http_conn.verify_mode = @options[:ssl_verify_mode]
       if options[:debug]
         http_conn.set_debug_output($stdout)
