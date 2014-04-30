@@ -17,6 +17,7 @@ module JiraRestApi
     end
 
     def make_request(http_method, path, body='', headers={})
+      headers = headers.merge(options[:headers]) if options[:headers]
       request = Net::HTTP.const_get(http_method.to_s.capitalize).new(path, headers)
       request.body = body unless body.nil?
       request.basic_auth(@options[:username], @options[:password])

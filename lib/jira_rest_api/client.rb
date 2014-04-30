@@ -60,7 +60,6 @@ module JiraRestApi
     }
 
     def initialize(options={})
-      @default_headers = DEFAULT_HEADERS.merge(options[:headers] || {})
       @options = DEFAULT_OPTIONS.merge(options)
       @options[:rest_base_path] = @options[:context_path] + @options[:rest_base_path]
 
