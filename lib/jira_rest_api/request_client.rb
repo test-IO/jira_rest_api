@@ -11,15 +11,7 @@ module JiraRestApi
 
     def request(*args)
       response = make_request(*args)
-      case response.class
-      when Net::HTTPSuccess
-        response
-      when Net::HTTPFound
-        # Todo: Implement redirect following
-        raise HTTPError.new(response)
-      else
-        raise HTTPError.new(response)
-      end
+      raise HTTPError.new(response) unless response.kind_of?(Net::HTTPSuccess)
       response
     end
   end
