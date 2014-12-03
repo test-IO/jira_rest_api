@@ -386,7 +386,7 @@ module JiraRestApi
     def set_attrs(hash, clobber=true, target = nil)
       target ||= @attrs
       if clobber
-        target.merge!(hash)
+        target.merge!(hash.is_a?(Array) ? hash.first : hash)
         hash
       else
         hash.each do |k, v|
