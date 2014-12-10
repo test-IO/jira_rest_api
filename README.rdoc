@@ -20,6 +20,14 @@ This gem provides access to the Atlassian JiraRestApi REST API.
   comment.save({'body':'My new comment'})
   comment.delete
 
+  ticket = jira.Issue.find 'DEV-33'
+  attachment = ticket.attachments.build
+  attachment.save({
+    'filename' => 'test.txt',
+    'content' => '/path/to/file/to/attach',
+    'type' => 'text/plain'
+  })
+
 == Links to JiraRestApi REST API documentation
 
 * {Overview}[https://developer.atlassian.com/display/JiraRestApiDEV/JiraRestApi+REST+APIs]
