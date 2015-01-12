@@ -44,6 +44,13 @@ module JiraRestApi
         end
       end
 
+      def self.createmeta(client)
+        response = client.get(
+          client.options[:rest_base_path] + '/issue/createmeta?expand=projects.issuetypes.fields'
+        )
+        json = parse_json(response.body)
+      end
+
       def self.jql(client, jql)
         url = client.options[:rest_base_path] + "/search?jql=" + CGI.escape(jql)
         response = client.get(url)
