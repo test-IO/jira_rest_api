@@ -5,7 +5,7 @@ module JiraRestApi
 
   # This class is the main access point for all JiraRestApi::Resource instances.
   #
-  # The client must be initialized with an options hash containing 
+  # The client must be initialized with an options hash containing
   # configuration options.  The available options are:
   #
   #   :site               => 'http://localhost:2990',
@@ -28,7 +28,7 @@ module JiraRestApi
   #
   # See the JiraRestApi::Base class methods for all of the available methods on these accessor
   # objects.
-  
+
   class Client
 
     extend Forwardable
@@ -62,8 +62,9 @@ module JiraRestApi
     def initialize(options={})
       @options = DEFAULT_OPTIONS.merge(options)
       @options[:rest_base_path] = @options[:context_path] + @options[:rest_base_path]
+      set_options_auth_type
 
-      case options[:auth_type]
+      case @options[:auth_type]
       when :oauth
         @request_client = OauthClient.new(@options)
         @consumer = @request_client.consumer
@@ -163,6 +164,13 @@ module JiraRestApi
 
       def merge_default_headers(headers)
         DEFAULT_HEADERS.merge(headers)
+      end
+
+      def set_options_auth_type
+        unless @options[:auth_type].present?
+          @options[:auth_type] = :oauth if (options[:consumer_key] || options[:consumer_secret])
+          @options[:auth_type] = :basic if (options[:username] && options[:password])
+        end
       end
 
   end

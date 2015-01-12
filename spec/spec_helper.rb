@@ -1,7 +1,10 @@
-$LOAD_PATH.unshift(File.join(File.dirname(__FILE__), '..', 'lib'))
+$:.unshift(File.expand_path('../../lib', __FILE__))
+
 require 'rubygems'
 require 'bundler/setup'
 require 'webmock/rspec'
+require 'pry'
+
 Dir["./spec/support/**/*.rb"].each {|f| require f}
 
 require 'jira_rest_api'
