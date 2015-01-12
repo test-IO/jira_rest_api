@@ -19,14 +19,14 @@ Gem::Specification.new do |s|
   s.executables   = `git ls-files -- bin/*`.split("\n").map{ |f| File.basename(f) }
   s.require_paths = ["lib"]
 
-  s.add_runtime_dependency "oauth"
-  s.add_development_dependency "oauth"
-  s.add_development_dependency "railties"
-  s.add_runtime_dependency "activesupport"
-  s.add_development_dependency "activesupport"
-  s.add_development_dependency "webmock"
-  s.add_development_dependency "rspec"
-  s.add_development_dependency "rake"
-  s.add_runtime_dependency "multipart-post"
+  # DEPENDENCIES
+  s.add_dependency 'oauth'
+  s.add_dependency 'multipart-post'
+  s.add_dependency 'activesupport', '>= 4', '< 5'
+
+  s.add_development_dependency 'railties'
+  s.add_development_dependency 'webmock'
+  s.add_development_dependency 'rspec'
+  s.add_development_dependency 'rake'
 
 end
